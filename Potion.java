@@ -1,14 +1,9 @@
 package Models;
-import java.io.Serializable;
 import java.util.Random;
 
-public class Potion extends Item implements Serializable {
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_RED = "\u001B[31m";
-    public static final long serialVersionUID = 3;
+public class Potion extends Item{
     private int healAmount = 10;
     Random rng = new Random();
-
 
     public Potion() {
         super();
@@ -21,7 +16,6 @@ public class Potion extends Item implements Serializable {
         super(name, value);
         setHealAmount(healAmount);
     }
-
 
     public float getHealAmount() {
         return healAmount;
@@ -36,7 +30,7 @@ public class Potion extends Item implements Serializable {
 
     @Override
     public String toString() {
-        String PotionString = " Potion {" + super.toString() + ANSI_RED + " Heal Amount: " + getHealAmount() + ANSI_RESET + "}";
+        String PotionString = " Potion {" + super.toString() + " Heal Amount: " + getHealAmount() + "}";
         return PotionString;
     }
 }

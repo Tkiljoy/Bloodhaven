@@ -1,11 +1,9 @@
 package Models;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
-public class Weapon extends Item implements Serializable {
-    public static final long serialVersionUID = 4;
+public class Weapon extends Item{
     private int minDamage = 1;
     private int maxDamage = 99;
     private ArrayList<String> weaponNames = new ArrayList<>(Arrays.asList("Kromwolds Cleaver of Power","Jack's GreatSword of Greatness","Max's Flail of Flailness","Keebie's Axe of Cutting","Swomold's Greatbow of Flying"));
@@ -35,6 +33,9 @@ public class Weapon extends Item implements Serializable {
     }
 
     public void setMinDamage(int minDamage) {
+        if (minDamage < 1) {
+            throw new IllegalArgumentException("The Minimum Damage cannot be greater than the Max damage or less than 1");
+        }
         this.minDamage = minDamage;
     }
 
@@ -43,6 +44,9 @@ public class Weapon extends Item implements Serializable {
     }
 
     public void setMaxDamage(int maxDamage) {
+        if (maxDamage > 100){
+            throw new IllegalArgumentException("The max damage cannot be greater than 100");
+        }
         this.maxDamage = maxDamage;
     }
 

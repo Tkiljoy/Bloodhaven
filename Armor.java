@@ -1,11 +1,9 @@
 package Models;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
-public class Armor extends Item implements Serializable {
-    public static final long serialVersionUID = 5;
+public class Armor extends Item{
     private int damageReduction = 5;
     private int agilityModifier = -6;
     private ArrayList<String> armorNames = new ArrayList<>(Arrays.asList("Bronze Chestplate of Healing","Golden Boots of Speed","Silver Leggings of WolfDown","BloodTongue Helmet of Lizards","Diamond Gauntlets of Seething"));

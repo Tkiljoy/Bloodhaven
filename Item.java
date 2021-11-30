@@ -1,25 +1,16 @@
 package Models;
-
-import java.io.Serializable;
-import java.util.Random;
-
-public class Item implements Serializable {
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_GREEN = "\u001B[32m";
-    public static final long serialVersionUID = 6;
+public class Item {
     protected String name = "[UNIDENTIFIED]";
-    Random rng = new Random();
-    protected int itemValue = 10;
+    protected int value = 1;
 
     public Item() {
-        int itemCost = 1000;
         setName(name);
-        itemValue = rng.nextInt(itemCost);
+        setValue(value);
     }
 
-    public Item(String name, int itemValue) {
+    public Item(String name, int value) {
         setName(name);
-        setItemValue(itemValue);
+        setValue(value);
     }
 
     public String getName() {
@@ -33,23 +24,23 @@ public class Item implements Serializable {
         this.name = name;
     }
 
-    public int getItemValue() {
-        return itemValue;
+    public int getValue() {
+        return value;
     }
 
-    public void setItemValue(int itemValue) {
-        if (itemValue < 0){
+    protected void setValue(int value) {
+        if (value < 0){
             throw new IllegalArgumentException("The value cannot be less than zero");
         }
-        if (itemValue > 100000){
+        if (value > 100000){
             throw new IllegalArgumentException("The value cannot be more than 100000");
         }
-        this.itemValue = itemValue;
+        this.value = value;
     }
 
     @Override
     public String toString() {
-        String ItemString = "Name: " + getName() + ANSI_GREEN + " Value: " + getItemValue() + ANSI_RESET;
+        String ItemString = "Name: " + getName() + " Value: " + getValue();
         return ItemString;
     }
 }

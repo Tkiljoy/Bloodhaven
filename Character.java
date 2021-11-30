@@ -14,14 +14,9 @@ public class Character implements Serializable {
     private int stamina;
     private int currentXP;
     private long nextLevelXp = calculateNextXp();
-    private int level = 1;
-    private int currentBalance;
-    private int attributePoints;
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_RED = "\u001B[31m";
-    public static final String ANSI_GREEN = "\u001B[32m";
+    private int level;
 
-    public Character(String characterName, int currentHealth, int maxHealth ,int damage, int strength, int agility, int stamina,int defense,int currentXP,int level, int currentBalance) {
+    public Character(String characterName, int currentHealth, int maxHealth ,int damage, int strength, int agility, int stamina,int defense,int currentXP,int level) {
         this.characterName = characterName;
         this.currentHealth = currentHealth;
         this.maxHealth = maxHealth;
@@ -32,19 +27,10 @@ public class Character implements Serializable {
         this.strength = strength;
         this.agility = agility;
         this.stamina = stamina;
-        this.currentBalance = currentBalance;
     }
 
     public String getCharacterName() {
         return characterName;
-    }
-
-    public int getAttributePoints() {
-        return attributePoints;
-    }
-
-    public void setAttributePoints(int attributePoints) {
-        this.attributePoints = attributePoints;
     }
 
     public void setCharacterName(String characterName) {
@@ -71,16 +57,12 @@ public class Character implements Serializable {
     }
 
     public int setCurrentXP(int currentXP) {
-        if (currentXP >= nextLevelXp && nextLevelXp != 0)
+        if (currentXP >= nextLevelXp)
         {
             calculateNextXp();
             calculateMaxHP();
             currentHealth = maxHealth;
             level++;
-            attributePoints++;
-            damage++;
-            defense++;
-
             currentXP = 0;
         }
         this.currentXP = currentXP;
@@ -107,18 +89,6 @@ public class Character implements Serializable {
         }
         return  nextLevelXp;
     }
-
-    public int getCurrentBalance(){
-        return currentBalance;
-    }
-    public void setCurrentBalance(int currentBalance){
-        if (currentBalance < 0)
-        {
-            System.out.println("Balance cannot be less than 0");
-        }
-        this.currentBalance = currentBalance;
-    }
-
 
     public int getStrength() {
         return strength;
@@ -200,15 +170,14 @@ public class Character implements Serializable {
     @Override
     public String toString() {
         String CharacterString = " Character Name: " + getCharacterName()
-                + "\n" + ANSI_RED + " Current Health: " + getCurrentHealth() + ANSI_RESET
+                + "\n" + " Current Health: " + getCurrentHealth()
                 + "\n" + " Max Health: " + getMaxHealth()
-                + "\n" + " CurrentExperience: " + getCurrentXP() + "/" + nextLevelXp
-                + "\n" + ANSI_GREEN + " Current Balance: " + getCurrentBalance() + ANSI_RESET
+                + "\n" + " CurrentExperience: " + getCurrentXP()
                 + "\n" + " Level: " + getLevel()
                 + "\n" + " Damage: " + getDamage()
                 + "\n" + " Defense: " + getDefense()
                 + "\n" +" Strength: "+ getStrength()
-                + "\n" + " Agility: "+ getAgility()
+                + "\n" + "Agility: "+ getAgility()
                 + "\n" +" Stamina: " + getStamina()
                 + "\n";
         return CharacterString;
